@@ -6,16 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 
 
-public class ActiveMQSender1 {
+public class ActiveMQSender {
 
     private static final Logger LOGGER =
-            LoggerFactory.getLogger(ActiveMQSender1.class);
+            LoggerFactory.getLogger(ActiveMQSender.class);
 
+    @Autowired
     private JmsTemplate jmsTemplate;
-
-    public ActiveMQSender1(JmsTemplate jmsTemplate1) {
-        this.jmsTemplate = jmsTemplate1;
-    }
 
     public void send(String message) {
         LOGGER.info("sending message='{}'", message);

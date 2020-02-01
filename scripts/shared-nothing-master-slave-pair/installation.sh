@@ -123,3 +123,13 @@ echo "Assign group-name to Replication Master / Slave configuration in broker.xm
 echo "Change host name (if required) in connectors"
 echo "Edit broker.xml to configure RBAC"
 echo "Edit login.configuration to add JAAS modules"
+
+
+
+echo "Edit broker.xml to configure ssl"
+echo "To enable ensure certs are istalled and available to brokers and clients"
+echo "sudo mkdir /opt/rh/amq-broker/certs"
+echo "sudo mv activemq.example.* /opt/rh/amq-broker/certs/"
+echo "Add the following to the broker.xml in the acceptor: sslEnabled=true;keyStorePath=/opt/rh/amq-broker/certs/activemq.example.keystore;keyStorePassword=activemqexample"
+echo "Add the following to the broker.xml in the connector: sslEnabled=true;trustStorePath=/opt/rh/amq-broker/certs/activemq.example.truststore;trustStorePassword=activemqexample"
+echo "Change ownership of the certificate files: sudo chown -R amq-broker:amq-broker /opt/rh/amq-broker/certs/""
