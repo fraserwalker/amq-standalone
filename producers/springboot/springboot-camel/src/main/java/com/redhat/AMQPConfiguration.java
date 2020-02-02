@@ -13,12 +13,7 @@ public class AMQPConfiguration {
     /**
      * AMQ service name
      */
-    private String serviceName;
-
-    /**
-     * AMQ service port
-     */
-    private Integer port;
+    private String brokerUri;
 
     /**
      * AMQ username
@@ -30,33 +25,15 @@ public class AMQPConfiguration {
      */
     private String password;
 
-    /**
-     * AMQ service port
-     */
-    private String servicePort;
-
-    /**
-     * AMQ parameters
-     */
-    private String parameters;
-
     public AMQPConfiguration() {
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getBrokerUri() {
+        return brokerUri;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setBrokerUri(String brokerUri) {
+        this.brokerUri = brokerUri;
     }
 
     public String getUsername() {
@@ -75,19 +52,4 @@ public class AMQPConfiguration {
         this.password = password;
     }
 
-    public String getServicePort() {
-        return servicePort;
-    }
-
-    public void setServicePort(String servicePort) {
-        this.servicePort = servicePort;
-    }
-
-    public String getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(String parameters) {
-        this.parameters = parameters;
-    }
 }

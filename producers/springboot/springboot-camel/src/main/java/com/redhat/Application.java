@@ -22,6 +22,8 @@ import org.apache.qpid.jms.transports.TransportOptions;
 import org.apache.qpid.jms.transports.TransportSupport;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
@@ -31,17 +33,20 @@ import javax.net.ssl.SSLContext;
  * The Spring-boot main class.
  */
 @SpringBootApplication
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Application.class);
+    }
+
     @Bean(name = "amqp-component")
     AMQPComponent amqpComponent(AMQPConfiguration config) {
-        String remoteURI = String.format("amqps://%s:%s?%s", config.getServiceName(), config.getServicePort(), config.getParameters());
-
-        JmsConnectionFactory qpid = new JmsConnectionFactory(config.getUsername(), config.getPassword(), remoteURI);
+        JmsConnectionFactory qpid = new JmsConnectionFactory(config.getUsername(), config.getPassword(), config.getBrokerUri());
 
         PooledConnectionFactory factory = new PooledConnectionFactory();
         factory.setConnectionFactory(qpid);
